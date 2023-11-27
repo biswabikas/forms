@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:forms/data/dummy_items.dart';
+import 'package:forms/widgets/new_items.dart';
 
-class GroceryList extends StatelessWidget {
+class GroceryList extends StatefulWidget {
   const GroceryList({super.key});
+
+  @override
+  State<GroceryList> createState() => _GroceryListState();
+}
+
+class _GroceryListState extends State<GroceryList> {
+  void additem() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => NewItem(),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +26,15 @@ class GroceryList extends StatelessWidget {
           'Your Groceries',
           style: TextStyle(color: Colors.white),
         ),
+        actions: [
+          IconButton(
+            onPressed: additem,
+            icon: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: groceryItems.length,
